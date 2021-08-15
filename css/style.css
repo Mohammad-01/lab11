@@ -1,0 +1,122 @@
+* {
+    box-sizing: border-box;
+    list-style: none;
+  }
+
+  button {
+      background-color:rgba(255, 255, 255, 0.726);
+      margin-left: 200px;
+      }
+
+
+  #results {
+    background-color:rgba(255,255,255,.8);
+    border-radius:.100em;
+    box-shadow:0 0 .25em rgba(0,0,0,.25);
+    box-sizing:border-box;
+  }
+
+  p { 
+    padding-top:30px;
+    text-align: center;
+    font-size:x-large;
+    font-style:initial;
+  }
+
+  footer {
+    text-align: center;
+    font-size: large;
+  }
+  h1 {
+    text-align: center;
+  }
+  img {
+    display: block;
+    width: 150px;
+    float: left;
+    height: 150px;
+    border: 2px solid lightblue;
+  }
+  #image-container {
+    padding-left: 200px;
+    border: 2px solid black;
+    width: 1000px;
+    margin: 0 auto;
+    height: 175px;
+  }
+  #leftImg,
+  #rightImg,
+  #middle
+  {
+    width: 200px;
+    margin: 10px;
+    /* display: block; */
+    /* margin: 0 auto; */
+    border-radius: 10px;
+  }
+  span {
+    margin-left: 50px;
+  }
+  #attempts {
+    margin-left: 20px;
+    font-size: 30px;
+  }
+/*Background*/
+html {
+    height:100%;
+  }
+  
+  body {
+    margin:0;
+  }
+  
+  .bg {
+    animation:slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%);
+    bottom:0;
+    left:-50%;
+    opacity:.5;
+    position:fixed;
+    right:-50%;
+    top:0;
+    z-index:-1;
+  }
+  
+  .bg2 {
+    animation-direction:alternate-reverse;
+    animation-duration:4s;
+  }
+  
+  .bg3 {
+    animation-duration:5s;
+  }
+  
+  .content {
+    background-color:rgba(255,255,255,.8);
+    border-radius:.20em;
+    box-shadow:0 0 .25em rgba(0,0,0,.25);
+    box-sizing:border-box;
+    left:50%;
+    padding:7vmin;
+    position:fixed;
+    text-align:center;
+    top:80%;
+    transform:translate(-50%, -50%);
+    color: rgb(105, 105, 0);
+  }
+  
+  h1 {
+    font-family:monospace;
+  }
+  
+  @keyframes slide {
+    0% {
+      transform:translateX(-25%);
+    }
+    100% {
+      transform:translateX(25%);
+    }
+  }
+  
+
+
