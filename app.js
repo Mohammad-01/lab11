@@ -9,11 +9,11 @@ let result = document.getElementById('results');
 let productImage = ['bag.jpg','bananna.jpg','bathroom.jpg','boots.jpg','breakfast.jpg','chair.jpg','cthulhu.jpg','dog-duck.jpg','meatball.jpg','pen.jpg',
 'pet-sweep.jpg','scissors.jpg','shark.jpg','sweep.png','tauntaun.jpg','unicorn.jpg','water.jpg','wine.jpg',];
 
-let maxAttempts = 18;
+let maxAttempts = 3;
 let attempt = 1;
 let image = [];
 
-function product(prductName, votes, views ) {
+function product(prductName) {
     this.gName = prductName.split('.')[0];
     this.gImg = `${prductName}`;
     this.votes = 0;
@@ -78,16 +78,20 @@ function clickHandler(event) {
         button.addEventListener("click", display);
 
         function display() {
+        
+            let button = document.getElementById('res');
+            button.addEventListener("click", display);
 
-            for (let i = 0; i < bus.length; i++) {
-                let liEl = document.createElement('li');
-                result.appendChild(liEl);
-                document.getElementById("res").innerHTML 
-                = liEl.textContent = liEl.textContent = `${image[i].gName} has ${image[i].votes} votes and  ${image[i].views} views.`;
-
+            function display() {
+              
+                for (let i = 0; i < image.length; i++) {
+                    let liEl = document.createElement('li');
+                    result.appendChild(liEl);
+                    liEl.textContent = `${image[i].gName} has ${image[i].votes} votes and  ${image[i].views} views.`;
+                }
+                leftImg.removeEventListener('click', clickHandler);
+                rightImg.removeEventListener('click', clickHandler);
+                middle.removeEventListener('click', clickHandler);
             }
-            leftImg.removeEventListener('click', clickHandler);
-            rightImg.removeEventListener('click', clickHandler);
-            centerImg.removeEventListener('click', clickHandler);
-}
-} }
+        }
+    }}
