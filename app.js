@@ -9,7 +9,7 @@ let result = document.getElementById('results');
 let productImage = ['bag.jpg','bananna.jpg','bathroom.jpg','boots.jpg','breakfast.jpg','chair.jpg','cthulhu.jpg','dog-duck.jpg','meatball.jpg','pen.jpg',
 'pet-sweep.jpg','scissors.jpg','shark.jpg','sweep.png','tauntaun.jpg','unicorn.jpg','water.jpg','wine.jpg',];
 
-let maxAttempts = 3;
+let maxAttempts = 18;
 let attempt = 1;
 let image = [];
 
@@ -35,8 +35,8 @@ let rightIndex;
 let middleIndex;
 
 function renderImg() {
-    leftIndex = randomImage();//0
-    rightIndex = randomImage();//5
+    leftIndex = randomImage();
+    rightIndex = randomImage();
     middleIndex = randomImage();
 
     while (leftIndex === rightIndex || leftIndex === middleIndex || middleIndex ===  rightIndex) {
@@ -71,27 +71,27 @@ function clickHandler(event) {
         renderImg();
         console.log(image);
         attempt++;
-
+    
     } else {
+        leftImg.removeEventListener('click', clickHandler);
+        rightImg.removeEventListener('click', clickHandler);
+        middle.removeEventListener('click', clickHandler);
+    }
+    
+}
 
-        let button = document.getElementById('res');
-        button.addEventListener("click", display);
 
-        function display() {
+       
+            
         
-            let button = document.getElementById('res');
-            button.addEventListener("click", display);
+let button = document.getElementById('res');
+button.addEventListener("click", display);
 
-            function display() {
-              
-                for (let i = 0; i < image.length; i++) {
-                    let liEl = document.createElement('li');
-                    result.appendChild(liEl);
-                    liEl.textContent = `${image[i].gName} has ${image[i].votes} votes and  ${image[i].views} views.`;
-                }
-                leftImg.removeEventListener('click', clickHandler);
-                rightImg.removeEventListener('click', clickHandler);
-                middle.removeEventListener('click', clickHandler);
-            }
+function display() {
+    
+        for (let i = 0; i < image.length; i++) {
+            let liEl = document.createElement('li');
+            result.appendChild(liEl);
+            liEl.textContent = `${image[i].gName} has ${image[i].votes} votes and  ${image[i].views} views.`;
         }
-    }}
+}
