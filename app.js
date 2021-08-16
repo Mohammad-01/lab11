@@ -15,7 +15,7 @@ let image = [];
 let votes = [];
 let views = [];
 let nameArr = [];
-let saveIndex = [];
+let imageSave = [];
 
 function product(prductName) {
     this.gName = prductName.split('.')[0];
@@ -47,27 +47,56 @@ function renderImg() {
     rightIndex = randomImage();
     middleIndex = randomImage();
     
-    while (leftIndex === rightIndex || leftIndex === middleIndex || middleIndex ===  rightIndex) {
+    while (leftIndex === rightIndex || leftIndex === middleIndex || middleIndex ===  rightIndex || imageSave.includes(leftIndex) ||
+    imageSave.includes(middleIndex) || imageSave.includes(rightIndex)) {
         leftIndex = randomImage();
+        rightIndex = randomImage();
+        middleIndex = randomImage();
     }
-
+    
     leftImg.setAttribute('src', image[leftIndex].gImg);
     rightImg.setAttribute('src', image[rightIndex].gImg);
     middle.setAttribute('src', image[middleIndex].gImg);
     image[leftIndex].views++;
     image[rightIndex].views++;
     image[middleIndex].views++;
-
-    saveleftIndex = leftIndex;
-    saverightIndex = rightIndex;
-    savemiddleIndex = middleIndex;  
-
-    saveleftIndex.push(saveIndex[0]);
-    saverightIndex.push(saveIndex[1]);
-    savemiddleIndex.push(saveIndex[2]);
+    imageSave = [];
+    imageSave[0]=leftIndex;
+    imageSave[1]=middleIndex;
+    imageSave[2]=rightIndex;
     
 }
 renderImg();
+/*
+function renderImg() 
+{
+    leftIndex = randomImage();
+    rightIndex =  randomImage();
+    centerindex =  randomImage();
+    while (leftIndex === centerindex || leftIndex === rightIndex ||
+        centerindex === rightIndex || imagesPerRound.includes(leftIndex) ||
+         imagesPerRound.includes(centerindex) || imagesPerRound.includes(rightIndex))
+        {
+            leftIndex = randomImage();
+            rightIndex =  randomImage();
+            centerindex =  randomImage();
+          
+
+             
+            }
+            imagesPerRound = [];
+            imagesPerRound[0]=leftIndex;
+            imagesPerRound[1]=centerindex;
+            imagesPerRound[2]=rightIndex;
+            leftImg.setAttribute('src', bus[leftIndex].gImg);
+            rightImg.setAttribute('src', bus[rightIndex].gImg);
+            centerImg.setAttribute('src', bus[centerindex].gImg);
+            bus[leftIndex].views++;
+            bus[rightIndex].views++;
+            bus[centerindex].views++;
+         
+}
+renderImg();*/
 
 
 leftImg.addEventListener('click', clickHandler);
@@ -114,7 +143,6 @@ function display() {
             nameArr.push(image[i].gName);
         }
 }
-console.log("hi");
 
 function chartRender() {
     let ctx = document.getElementById('myChart').getContext('2d');
@@ -157,25 +185,3 @@ function chartRender() {
 chartRender();
 
 
-function renderImg2() {    
-    while (leftIndex === rightIndex || leftIndex === middleIndex || middleIndex ===  rightIndex) {
-        leftIndex = randomImage();
-    }
-    if (saveleftIndex === leftIndex){  leftIndex = randomImage(); }
-    else if (saverightIndex === rightIndex){  rightIndex = randomImage(); }
-    else if (savemiddleIndex === middleIndex){  middleIndex = randomImage(); }
-
-    leftImg.setAttribute('src', image[leftIndex].gImg);
-    rightImg.setAttribute('src', image[rightIndex].gImg);
-    middle.setAttribute('src', image[middleIndex].gImg);
-    image[leftIndex].views++;
-    image[rightIndex].views++;
-    image[middleIndex].views++;
-
-
-}
-renderImg2();
-
-leftImg.addEventListener('click', clickHandler);
-rightImg.addEventListener('click', clickHandler);
-middle.addEventListener('click', clickHandler);
