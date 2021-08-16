@@ -12,6 +12,10 @@ let productImage = ['bag.jpg','bananna.jpg','bathroom.jpg','boots.jpg','breakfas
 let maxAttempts = 18;
 let attempt = 1;
 let image = [];
+let votes = [];
+let views = [];
+let nameArr = [];
+let saveIndex = [];
 
 function product(prductName) {
     this.gName = prductName.split('.')[0];
@@ -34,22 +38,37 @@ let leftIndex;
 let rightIndex;
 let middleIndex;
 
+let saveleftIndex;
+let saverightIndex;
+let savemiddleIndex;
+
 function renderImg() {
     leftIndex = randomImage();
     rightIndex = randomImage();
     middleIndex = randomImage();
-
+    
     while (leftIndex === rightIndex || leftIndex === middleIndex || middleIndex ===  rightIndex) {
         leftIndex = randomImage();
     }
+
     leftImg.setAttribute('src', image[leftIndex].gImg);
     rightImg.setAttribute('src', image[rightIndex].gImg);
     middle.setAttribute('src', image[middleIndex].gImg);
     image[leftIndex].views++;
     image[rightIndex].views++;
     image[middleIndex].views++;
+
+    saveleftIndex = leftIndex;
+    saverightIndex = rightIndex;
+    savemiddleIndex = middleIndex;  
+
+    saveleftIndex.push(saveIndex[0]);
+    saverightIndex.push(saveIndex[1]);
+    savemiddleIndex.push(saveIndex[2]);
+    
 }
 renderImg();
+
 
 leftImg.addEventListener('click', clickHandler);
 rightImg.addEventListener('click', clickHandler);
@@ -76,14 +95,11 @@ function clickHandler(event) {
         leftImg.removeEventListener('click', clickHandler);
         rightImg.removeEventListener('click', clickHandler);
         middle.removeEventListener('click', clickHandler);
+        
     }
     
 }
 
-
-       
-            
-        
 let button = document.getElementById('res');
 button.addEventListener("click", display);
 
@@ -93,5 +109,73 @@ function display() {
             let liEl = document.createElement('li');
             result.appendChild(liEl);
             liEl.textContent = `${image[i].gName} has ${image[i].votes} votes and  ${image[i].views} views.`;
+            votes.push(image[i].votes);
+            views.push(image[i].views);
+            nameArr.push(image[i].gName);
         }
 }
+console.log("hi");
+
+function chartRender() {
+    let ctx = document.getElementById('myChart').getContext('2d');
+    let myChart = new Chart(ctx, {
+        type : 'bar',
+        data: {
+            labels: nameArr,
+            datasets: [{
+                label: '# of Votes',
+                data: votes,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)'
+                ],
+                borderWidth: 1
+            }, {
+                label: '# of views',
+                data: views,
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)'
+                ],
+                borderWidth: 1
+
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+chartRender();
+
+
+function renderImg2() {    
+    while (leftIndex === rightIndex || leftIndex === middleIndex || middleIndex ===  rightIndex) {
+        leftIndex = randomImage();
+    }
+    if (saveleftIndex === leftIndex){  leftIndex = randomImage(); }
+    else if (saverightIndex === rightIndex){  rightIndex = randomImage(); }
+    else if (savemiddleIndex === middleIndex){  middleIndex = randomImage(); }
+
+    leftImg.setAttribute('src', image[leftIndex].gImg);
+    rightImg.setAttribute('src', image[rightIndex].gImg);
+    middle.setAttribute('src', image[middleIndex].gImg);
+    image[leftIndex].views++;
+    image[rightIndex].views++;
+    image[middleIndex].views++;
+
+
+}
+renderImg2();
+
+leftImg.addEventListener('click', clickHandler);
+rightImg.addEventListener('click', clickHandler);
+middle.addEventListener('click', clickHandler);
