@@ -9,7 +9,7 @@ let result = document.getElementById('results');
 let productImage = ['bag.jpg','bananna.jpg','bathroom.jpg','boots.jpg','breakfast.jpg','chair.jpg','cthulhu.jpg','dog-duck.jpg','meatball.jpg','pen.jpg',
 'pet-sweep.jpg','scissors.jpg','shark.jpg','sweep.png','tauntaun.jpg','unicorn.jpg','water.jpg','wine.jpg',];
 
-let maxAttempts = 18;
+let maxAttempts = 25;
 let attempt = 1;
 let image = [];
 let votes = [];
