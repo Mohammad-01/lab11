@@ -80,9 +80,6 @@
     }
     renderImg();
 
-    saveToLocalStroge();
-    readFromLocalStorage();
-   
 
     leftImg.addEventListener('click', clickHandler);
     rightImg.addEventListener('click', clickHandler);
@@ -126,7 +123,11 @@
                 votes.push(image[i].votes);
                 views.push(image[i].views);
                 nameArr.push(image[i].gName);
+                saveToLocalStroge();
             }
+            
+    readFromLocalStorage();
+   
     }
 
     function chartRender() {
