@@ -52,7 +52,11 @@
     function readFromLocalStorage() {
         let stringObj = localStorage.getItem('bus');
         let normalObj = JSON.parse(stringObj);
+        if(normalObj){
+            image=normalObj
+        }
     } 
+    readFromLocalStorage();
 
     function renderImg() {
         leftIndex = randomImage();
@@ -125,9 +129,6 @@
                 nameArr.push(image[i].gName);
                 saveToLocalStroge();
             }
-            
-    readFromLocalStorage();
-   
     }
 
     function chartRender() {
